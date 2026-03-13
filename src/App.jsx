@@ -95,7 +95,7 @@ const Bookmarks = () => {
       return;
     }
 
-    fetch('/api/bookmarks', {
+    fetch('https://entertainment-app-1-xpuq.onrender.com/bookmarks', {
       headers: { 'Authorization': `Bearer ${token}` }
     })
       .then(res => res.json())
@@ -108,7 +108,7 @@ const Bookmarks = () => {
     if (!token) return;
 
     try {
-      const res = await fetch(`/api/bookmarks/${mediaId}`, {
+      const res = await fetch(`https://entertainment-app-1-xpuq.onrender.com/bookmarks/${mediaId}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -203,7 +203,7 @@ const Login = ({ setIsLoggedIn }) => {
     e.preventDefault();
     setError('');
     try {
-      const res = await fetch('/api/auth/login', {
+      const res = await fetch('https://entertainment-app-1-xpuq.onrender.com/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
@@ -211,7 +211,7 @@ const Login = ({ setIsLoggedIn }) => {
       const data = await res.json();
       if (res.ok) {
         localStorage.setItem('token', data.token);
-        setIsLoggedIn(true); // ← अब ये काम करेगा
+        setIsLoggedIn(true); 
         alert('Login successful!');
         navigate('/');
       } else {
@@ -245,7 +245,7 @@ const Signup = () => {
     e.preventDefault();
     setError('');
     try {
-      const res = await fetch('/api/auth/signup', {
+      const res = await fetch('https://entertainment-app-1-xpuq.onrender.com/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),

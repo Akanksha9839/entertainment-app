@@ -95,7 +95,7 @@ const Bookmarks = () => {
       return;
     }
 
-    fetch('https://entertainment-app-1-xpuq.onrender.com/bookmarks', {
+    fetch('https://entertainment-app-1-xpuq.onrender.com/api/bookmarks', {
       headers: { 'Authorization': `Bearer ${token}` }
     })
       .then(res => res.json())
@@ -108,7 +108,7 @@ const Bookmarks = () => {
     if (!token) return;
 
     try {
-      const res = await fetch(`https://entertainment-app-1-xpuq.onrender.com/bookmarks/${mediaId}`, {
+      const res = await fetch(`https://your-backend.onrender.com/api/bookmarks/${mediaId}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -203,7 +203,7 @@ const Login = ({ setIsLoggedIn }) => {
     e.preventDefault();
     setError('');
     try {
-      const res = await fetch('https://entertainment-app-1-xpuq.onrender.com/login', {
+     const res = await fetch('https://your-backend.onrender.com/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
@@ -245,7 +245,7 @@ const Signup = () => {
     e.preventDefault();
     setError('');
     try {
-      const res = await fetch('https://entertainment-app-1-xpuq.onrender.com/signup', {
+      const res = await fetch('https://your-backend.onrender.com/api/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
@@ -435,74 +435,32 @@ const App = () => {
     <div className="min-h-screen w-screen bg-gray-950 text-white overflow-x-hidden">
       <nav className="bg-gray-800 p-4 shadow-md">
   <ul className="flex flex-wrap justify-center gap-6 md:gap-10 text-lg font-medium">
-    <li>
-      <Link 
-        to="/" 
-        className={`hover:text-purple-400 transition-colors ${location.pathname === '/' ? 'text-purple-400 font-bold' : 'text-white'}`}
-      >
-        Home
-      </Link>
-    </li>
-    <li>
-      <Link 
-        to="/movies" 
-        className={`hover:text-purple-400 transition-colors ${location.pathname === '/movies' ? 'text-purple-400 font-bold' : 'text-white'}`}
-      >
-        Movies
-      </Link>
-    </li>
-    <li>
-      <Link 
-        to="/tv" 
-        className={`hover:text-purple-400 transition-colors ${location.pathname === '/tv' ? 'text-purple-400 font-bold' : 'text-white'}`}
-      >
-        TV Series
-      </Link>
-    </li>
-    <li>
-      <Link 
-        to="/bookmarks" 
-        className={`hover:text-purple-400 transition-colors ${location.pathname === '/bookmarks' ? 'text-purple-400 font-bold' : 'text-white'}`}
-      >
-        Bookmarks
-      </Link>
-    </li>
+  <li><Link to="/" className={`hover:text-purple-400 transition-colors ${location.pathname === '/' ? 'text-purple-400 font-bold' : 'text-white'}`}>Home</Link></li>
+  <li><Link to="/movies" className={`hover:text-purple-400 transition-colors ${location.pathname === '/movies' ? 'text-purple-400 font-bold' : 'text-white'}`}>Movies</Link></li>
+  <li><Link to="/tv" className={`hover:text-purple-400 transition-colors ${location.pathname === '/tv' ? 'text-purple-400 font-bold' : 'text-white'}`}>TV Series</Link></li>
+  <li><Link to="/bookmarks" className={`hover:text-purple-400 transition-colors ${location.pathname === '/bookmarks' ? 'text-purple-400 font-bold' : 'text-white'}`}>Bookmarks</Link></li>
 
-    {isLoggedIn ? (
-      <li>
-        <button 
-          onClick={() => {
-            localStorage.removeItem('token');
-            setIsLoggedIn(false);
-            alert('Logged out successfully!');
-            navigate('/');
-          }}
-          className="hover:text-red-400 transition-colors text-white"
-        >
-          Logout
-        </button>
-      </li>
-    ) : (
-      <>
-        <li>
-          <Link 
-            to="/login" 
-            className={`hover:text-purple-400 transition-colors ${location.pathname === '/login' ? 'text-purple-400 font-bold' : 'text-white'}`}
-          >
-            Login
-          </Link>
-        </li>
-        <li>
-          <Link 
-            to="/signup" 
-            className={`hover:text-purple-400 transition-colors ${location.pathname === '/signup' ? 'text-purple-400 font-bold' : 'text-white'}`}
-          >
-            Sign Up
-          </Link>
-        </li>
-      </>
-    )}
-  </ul>
+  {isLoggedIn ? (
+    <li>
+      <button 
+        onClick={() => {
+          localStorage.removeItem('token');
+          setIsLoggedIn(false);
+          alert('Logged out successfully!');
+          navigate('/');
+        }}
+        className="hover:text-red-400 transition-colors text-white"
+      >
+        Logout
+      </button>
+    </li>
+  ) : (
+    <>
+      <li><Link to="/login" className={`hover:text-purple-400 transition-colors ${location.pathname === '/login' ? 'text-purple-400 font-bold' : 'text-white'}`}>Login</Link></li>
+      <li><Link to="/signup" className={`hover:text-purple-400 transition-colors ${location.pathname === '/signup' ? 'text-purple-400 font-bold' : 'text-white'}`}>Sign Up</Link></li>
+    </>
+  )}
+</ul>
 </nav>
 
       <main className="container mx-auto px-4 py-6">

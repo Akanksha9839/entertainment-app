@@ -59,7 +59,7 @@ const authMiddleware = (req, res, next) => {
 };
 
 // Signup
-app.post('https://entertainment-app-1-xpuq.onrender.com/signup', async (req, res) => {
+app.post('/api/auth/signup', async (req, res) => {
   const { email, password } = req.body;
   try {
     let user = await User.findOne({ email });
@@ -77,7 +77,7 @@ app.post('https://entertainment-app-1-xpuq.onrender.com/signup', async (req, res
 });
 
 // Login
-app.post('https://entertainment-app-1-xpuq.onrender.com/login', async (req, res) => {
+app.post('/api/auth/login', async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await User.findOne({ email });
@@ -94,7 +94,7 @@ app.post('https://entertainment-app-1-xpuq.onrender.com/login', async (req, res)
 });
 
 // Bookmarks Routes
-app.get('https://entertainment-app-1-xpuq.onrender.com/bookmarks', authMiddleware, async (req, res) => {
+app.get('/api/bookmarks', authMiddleware, async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
     res.json(user.bookmarks);
@@ -118,7 +118,7 @@ app.post('/api/bookmarks', authMiddleware, async (req, res) => {
   }
 });
 
-app.delete('https://entertainment-app-1-xpuq.onrender.com/bookmarks/:mediaId', authMiddleware, async (req, res) => {
+app.delete('/api/bookmarks/:mediaId', authMiddleware, async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
     user.bookmarks = user.bookmarks.filter(b => b.mediaId !== Number(req.params.mediaId));

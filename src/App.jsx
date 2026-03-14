@@ -95,7 +95,7 @@ const Bookmarks = () => {
       return;
     }
 
-    fetch('https://entertainment-app-1-xpuq.onrender.com/api/bookmarks', {
+    fetch('https://entertainment-app-1-vpjl.onrender.com/api/bookmarks', {
       headers: { 'Authorization': `Bearer ${token}` }
     })
       .then(res => res.json())
@@ -108,7 +108,7 @@ const Bookmarks = () => {
     if (!token) return;
 
     try {
-      const res = await fetch(`https://your-backend.onrender.com/api/bookmarks/${mediaId}`, {
+      const res = await fetch(`https://entertainment-app-1-vpjl.onrender.com/api/bookmarks/${mediaId}`, {
         method: 'DELETE',
         headers: { 'Authorization': `Bearer ${token}` }
       });
@@ -203,7 +203,7 @@ const Login = ({ setIsLoggedIn }) => {
     e.preventDefault();
     setError('');
     try {
-     const res = await fetch('https://your-backend.onrender.com/api/auth/login', {
+     const res = await fetch('https://entertainment-app-1-vpjl.onrender.com/api/auth/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
@@ -245,7 +245,7 @@ const Signup = () => {
     e.preventDefault();
     setError('');
     try {
-      const res = await fetch('https://your-backend.onrender.com/api/auth/signup', {
+      const res = await fetch('https://entertainment-app-1-vpjl.onrender.com/api/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),

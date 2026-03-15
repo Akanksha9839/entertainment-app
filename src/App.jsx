@@ -322,7 +322,7 @@ const Home = () => {
 
     const isBookmarked = bookmarkedIds.has(item.id);
     const method = isBookmarked ? 'DELETE' : 'POST';
-    const url = isBookmarked ? `/api/bookmarks/${item.id}` : '/api/bookmarks';
+    const url = isBookmarked ? `https://entertainment-app-1-vpjl.onrender.com/api/bookmarks/${item.id}` : 'https://entertainment-app-1-vpjl.onrender.com/api/bookmarks';
 
     try {
       const res = await fetch(url, {

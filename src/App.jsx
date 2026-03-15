@@ -287,7 +287,7 @@ const Home = () => {
     const token = localStorage.getItem('token');
     if (!token) return;
 
-    fetch('/api/bookmarks', {
+    fetch('https://entertainment-app-1-vpjl.onrender.com/api/bookmarks', {
       headers: { 'Authorization': `Bearer ${token}` }
     })
       .then(res => res.json())
